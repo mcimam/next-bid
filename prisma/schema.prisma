@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./base.db"
+}
+
+model User{
+  id  String @id  @default(cuid())
+  username String @unique
+  pass String
+  productBid ProductBid[]
+  autoBid AutoBidProfile?
+}
+
+model AutoBidProfile{
+  id     Int  @id @default(autoincrement())
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
+  maxBid Int @default(0)
+  warnBidP Float @default(0) //Warning Bid in Percent
+  warnBidV Int @default(0) // Warning Bid in real money
+  active Boolean @default(true) // Force switch for all bid
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id  String  @id @default(cuid())
+  productName String
+  imageUrl String @default("https://placeimg.com/600/400/tech") //Just for dummy photo
+  desc String
+  category  ProductCategory @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  startBid  DateTime @default(now())
+  endBid  DateTime
+  createdAt DateTime @default(now())
+  productBid ProductBid[]
+}
+
+model ProductCategory {
+  id String @id @default(cuid())
+  categoryName String
+  categoryDesc String
+  product Product[]
+}
+
+model ProductBid{
+  id Int @id @default(autoincrement())
+  product Product @relation(fields: [productId], references: [id])
+  productId String
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  bid Int
+  autoBid Boolean @default(false)
+  createdAt DateTime @default(now())
+  @@unique([productId, userId], name:"product_user")
+}
+
+// Incase tracking is necessary, use this table with many-1 relation with ProductBid
+// model Bid {
+//   id Int @id @default(autoincrement())
+//   productBid ProductBid @relation(fields: [productBidId], references: [id])
+//   productBidId Int 
+//   bid Int
+//   createdAt DateTime @default(now())
+// }
