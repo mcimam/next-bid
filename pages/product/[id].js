@@ -21,7 +21,7 @@ import TextField from '@mui/material/TextField'
 
 // Data Fetch Functions
 export async function getStaticPaths(){
-  const url =process.env.NEXT_PUBLIC_URL;
+  const url = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? process.env.NEXT_PUBLIC_VERCEL_ENV : process.env.NEXT_PUBLIC_URL
   const res = await fetch(`${url}api/product`);
   const data = await res.json();
 
@@ -39,7 +39,7 @@ export async function getStaticPaths(){
 
 export async function getStaticProps(context){
   const productid = context.params.id;
-  const url =process.env.NEXT_PUBLIC_URL;
+  const url = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? process.env.NEXT_PUBLIC_VERCEL_ENV : process.env.NEXT_PUBLIC_URL
   const res = await fetch(`${url}api/product/${productid}`);
   let data = await res.json();
   

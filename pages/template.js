@@ -12,7 +12,7 @@ export default function Page(){
 
 }
 
-PAGE.getLayout = function getLayout(page) {
+Page.getLayout = function getLayout(page) {
     return (
       <Layout>
         {page}

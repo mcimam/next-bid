@@ -48,7 +48,7 @@ export default function Navbar(){
     return (
         <AppBar position="static" color='transparent'>
         <Toolbar>
-            <Link href="/product" >
+            <Link href="/product" passHref={true}>
             <Typography variant="h4" component="div" sx={{ flexGrow: 1, fontWeight: 'bold', cursor: 'pointer' }}>
             logo
             </Typography>
@@ -79,7 +79,7 @@ export default function Navbar(){
           horizontal: 'right',
         }}
         >
-            <Link href="/setting/autobid"><MenuItem onClick={handleClose}>Setting</MenuItem></Link>
+            <Link href="/setting/autobid" passHref={true}><MenuItem onClick={handleClose}>Setting</MenuItem></Link>
             <MenuItem onClick={handleClose}>Logout</MenuItem>
         </Menu>
         </AppBar>

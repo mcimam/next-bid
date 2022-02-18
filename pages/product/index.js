@@ -27,7 +27,7 @@ import {Box, Typography, Button,
 
 // Define Data Fetching Functions
 export async function getServerSideProps(context) {
-  const url =process.env.NEXT_PUBLIC_URL;
+  const url = process.env.NEXT_PUBLIC_VERCEL_ENV == 'production' ? process.env.NEXT_PUBLIC_VERCEL_ENV : process.env.NEXT_PUBLIC_URL;
 
   const res = await fetch(`${url}api/product`)
   const data = await res.json();
@@ -92,7 +92,7 @@ export default function Home({products,url}) {
           <Box sx={{ px: 2, py:5 }}>
             <Grid container spacing={4}>
             {products.map((product) => (
-            <Link href={'/product/'+product.id} key={product.id}>
+            <Link href={'/product/'+product.id} key={product.id} passHref={true}>
             <Grid item  xs={12} sm={6} md={4}>
               <Card
                 sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}

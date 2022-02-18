@@ -11,6 +11,11 @@ First, configure absolute URL in .env.local
 NEXT_PUBLIC_URL=http://localhost:3000/
 ```
 
+Second, migrate prisma schema
+```bash
+npx prisma migrate dev
+```
+
 Second, run the development server:
 
 ```bash
@@ -26,6 +31,7 @@ API routes can be accessed on [http://localhost:3000/api/](http://localhost:3000
 ## Summary of Main Features
 
 1. Home Page
+Home page are located in 
 
 2. Detail Page
 
