@@ -33,20 +33,20 @@ API routes can be accessed on [http://localhost:3000/api/](http://localhost:3000
 
 ## Summary of Main Features
 
-1. Home Page
+### Home Page
 ![Home Page](https://i.ibb.co/kDRBTpM/image.png)
 Home page are located in `/` and redirected to `/product/index`. This page contain gallery view of all product store in database.
 
 
-2. Detail Page
-![Detail Page](https://ibb.co/3zXVgXd)
+### Detail Page
+![Detail Page](https://i.ibb.co/BNDv0D3/image.png)
 Detail page are located in `/product/[productId]`. This page contain detail view of all product store in database. Static site rendering are used to load detail page. However, frequently change item is fetch from hook via api. This enable *Live* bedding.
 
-3. Bid Now Functionality
-![Detail Page](https://ibb.co/3zXVgXd)
+### Bid Now Functionality
+![Detail Page](https://i.ibb.co/BNDv0D3/image.png)
 Bid now are located in `/product/[productId]`. This function enable user to bid with spesific value. Before value is updated to database, it will be checked to ensure that it's value is higher that current highest bid. Below bid now button, users are able to switch autobid for spesific product
 
-4. Auto-Bidding Functionality
+### Auto-Bidding Functionality
 Auto Bidding enable user to automaticly rise their bid. Actually there are several way to achive this. However, for simplicity and low number of user and product, I trigger auto-bidding function for specific via API whenever other user bid product. Please note, for real case scenario, you would consider using either cron job or other similar method.
 
 ## What to be done
